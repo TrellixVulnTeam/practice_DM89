@@ -1,0 +1,24 @@
+<p>
+    <a href="{% url 'learning_logs:index' %}">学习主页</a> -{# 这里的链接是返回到index.html的链接。 #}
+    <a href="{% url 'learning_logs:topics' %}">主题</a> - {# 这里返回的是主题信息。 #}
+    {# 在身份验证系统中，每个user都有一个变量is_authenticated属性，如果用户登录该属性为True，否则为False #}
+    {% if user.is_authenticated %}
+        {# 这里显示一条问候语，提示用户已经登录 #}
+        你好：{{ user.username }}.
+        {# 这里表示链接到退出登录的视图 #}
+
+        <a href="{% url 'users:logout' %}">退出登录</a>
+    {% else %}
+        {# 显示一个到登录页面的链接，和注册用户的链接 #}
+        <a href="{% url 'users:register' %}">register:注册用户</a> -
+        <a href="{% url 'users:login' %}">登录</a>
+    {% endif %}
+</p>
+
+{# block为块的意思#}
+<p>这里是父模板的内容，写在占位符的外面的内容</p>
+
+{% block content %} {% endblock content %}  {# 这里只是一个站位符，其中的信息都将由子模板内容填充 #}
+{% block conten %} {% endblock conten %}  {# 占位符是相匹配的，其中的信息都将由子模板内容填充 #}
+
+

@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+  <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+  <p>编辑内容</p>
+{#      函数action将表单发回至edit_entry视图函数进行处理，将条目id设置为一个实参，让视图函数能够修改正确的条目对象。#}
+  <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">保存</button>
+  </form>
+
+{% endblock content %}

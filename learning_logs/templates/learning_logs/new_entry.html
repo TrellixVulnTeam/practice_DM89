@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+  <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+  <p>新的内容</p>
+  <form action="{% url 'learning_logs:new_entry' topic.id %}" method='POST'>  {# 让识图函数关联到正确的主题 #}
+    {% csrf_token %}  {# 防止攻击 #}
+    {{ form.as_p }}   {# 显示表单，以段落形式渲染所有表单元素 #}
+    <button name='submit'>添加内容</button>
+  </form>
+
+{% endblock content %}
+

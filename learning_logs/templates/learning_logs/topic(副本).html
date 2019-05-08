@@ -1,0 +1,27 @@
+{#这个页面显示的是主题的具体内容#}
+
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+    <p>主题：{{ topic }}</p>
+    <p>内容</p>
+    <p>
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">添加新的内容</a>
+    </p>
+    <ul>
+        {% for entry in entries %} {# 遍历全部的entries，都存储在字典centext中。 #}
+            <li>
+                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p> {# 竖线“|”表示过滤器，以月日，年 时间表示时间戳 #}
+                <p>{{ entry.text|linebreaks }}</p> {# 这里表示显示text完整的值。 #}
+                <p>
+                    <a href="{% url 'learning_logs:edit_entry' entry.id %}">更改内容</a>
+                </p>
+            </li>
+        {% empty %}
+            <li>
+                没有记录
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

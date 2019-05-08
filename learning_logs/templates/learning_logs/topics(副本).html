@@ -1,0 +1,18 @@
+    {#这个页面是显示的全部的主题#}
+
+{# 这是一个子模板 #}
+{% extends 'learning_logs/base.html' %}
+{% block conten %}
+    <p>主题</p>
+    <ul>
+        {% for topic in topics %}  {# 这里的topics是通过views.py中访问数据库的Topic数据生成遍历的。#}
+            <li>
+                <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+            </li>  {# 在模板中打印变量要用双括号 #}
+        {% empty %}  {# 如果为空则执行下面的<li> 中的信息。 #}
+            <li>没有主题添加</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'learning_logs:new_topic' %}">添加主题</a>
+{% endblock conten %}
+
