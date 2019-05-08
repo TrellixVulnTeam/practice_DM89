@@ -5,3 +5,4 @@
 - 运行需要安装django 1.8.~的版本。
 - python 需要3.0以上。
 - 需要安装dj-database-url,dj-static,static,gunicorn，django-bootstrap3库。
+- 已存在虚拟环境venv,可以直接使用
